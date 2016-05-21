@@ -18,9 +18,9 @@
 (define (last-pair l)
   (let loop ((a l)
              (b (cdr l)))
-    (if (null? b)
-        a
-        (loop b (cdr b)))))
+    (if (pair? b)
+        (loop b (cdr b))
+        a)))
 
 (define (queue-empty? q)
   (= (queue-length q) 0))
