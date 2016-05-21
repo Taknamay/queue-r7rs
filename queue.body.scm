@@ -15,6 +15,13 @@
   (front get-front set-front!)
   (back get-back set-back!))
 
+(define (last-pair l)
+  (let loop ((a l)
+             (b (cdr l)))
+    (if (null? b)
+        a
+        (loop b (cdr b)))))
+
 (define (queue-empty? q)
   (= (queue-length q) 0))
 
@@ -52,19 +59,11 @@
   a)
 
 (define (list->queue l)
-  (define q (make-queue 0 '() '(0)))
-  (for-each (lambda (i) (queue-add! q i)) l)
-  q)
+  (apply queue l))
 
 (define (queue->list q)
-  (define l
-    (let loop ((l '()))
-      (if (not (queue-empty? q))
-          (loop (cons (queue-remove! q) l))
-          (reverse l))))
-  (for-each (lambda (i) (queue-add! q i)) l)
-  l)
+  (list-copy (get-front q)))
 
 (define (queue . l)
-  (list->queue l))
+  (make-queue (length l) l (last-pair l)))
 
