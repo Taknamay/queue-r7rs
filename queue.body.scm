@@ -65,5 +65,7 @@
   (list-copy (get-front q)))
 
 (define (queue . l)
-  (make-queue (length l) l (last-pair l)))
+  (make-queue (length l) l (if (null? l)
+                               '(0)
+                               (last-pair l))))
 
