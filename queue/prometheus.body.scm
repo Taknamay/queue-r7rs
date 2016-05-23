@@ -1,5 +1,5 @@
 
-(define-object <prometheus-queue> (*the-root-object*)
+(define-object <queue> (*the-root-object*)
   (Q set-Q! (queue))
   
   ((clone self resend . values)
@@ -40,3 +40,7 @@
   
   ((back self resend)
    (queue-back (self 'Q))))
+
+(define (queue . l)
+  (apply <queue> 'clone l))
+
