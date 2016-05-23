@@ -5,6 +5,7 @@
    (srfi 28)
    (macduffie queue)
    (prometheus prometheus))
-  (export <queue> queue)
+  (export (rename <prometheus-queue> <queue>)
+          (rename prometheus-queue queue))
   (include "prometheus.body.scm"))
 
